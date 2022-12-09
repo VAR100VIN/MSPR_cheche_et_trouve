@@ -3,7 +3,9 @@
 namespace App\Controller;
 use App\Repository\PlantRepository;
 use App\Repository\UserRepository;
+use App\Repository\FindRepository;
 use App\Entity\Plant;
+use DateTime;
 use App\Entity\Find;
 use App\Entity\User;
 use App\Form\FindType;
@@ -30,11 +32,31 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+    #[Route('/api',name: 'api_loc')]
+    public function test(PlantRepository $plantRepository,UserRepository $userrepository,FindRepository $findrepository): Response
+    {
+        $find = new Find;
+        
+        $response=new Response();
+        return $response;
+    }
+    
     #[Route('/play', name: 'app_play')]
-    public function play(Request $request ,PlantRepository $plantRepository,UserRepository $userrepository, EntityManagerInterface $em): Response
+    public function play(Request $request ,PlantRepository $plantRepository,UserRepository $userrepository, EntityManagerInterface $em,FindRepository $findrepository): Response
     {
         $find = new Find();
-        // $this->find->setUrl($find);
+        // $user= $userrepository->find($_POST['user']);
+        // $plant = $plantrepository->find($_POST['plant']);
+        // $latitude = $_POST['latitude'];
+        // $longitude = $_POST['longitude'];
+        // $date=date('Y-m-d');
+        // $date=new DateTime();
+        // $find->setLatitude($latitude);
+        // $find->setLongitude($longitude);
+        // $find->setPlant($plant);
+        // $find->setUser($user);
+        // $find->setDate($date);
+        // $findrepository->save($find,True);
         $form = $this->createForm(FindType::class, $find);
         $form->handleRequest($request);
         // $user= $userrepository->find($_POST['user']);
@@ -42,7 +64,11 @@ class HomeController extends AbstractController
         
         if ($form->isSubmitted()&& $form->isValid()){
             $find = $form->getData();
-            
+            // $latitude = $_POST['latitude'];
+            // $longitude = $_POST['longitude'];
+            // $find->setLatitude($latitude);
+            // $find->setLongitude($longitude);
+            // $findrepository->save($find,True);
             //move le fichier
             // recuperer son nom
             // $filename=$user->getName().'_'.$plant->getName().'.png';
