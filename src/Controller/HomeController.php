@@ -5,7 +5,6 @@ use App\Repository\PlantRepository;
 use App\Repository\UserRepository;
 use App\Repository\FindRepository;
 use App\Repository\ImageRepository;
-use App\Repository\FindRepository;
 use App\Entity\Plant;
 use DateTime;
 use App\Entity\Find;
