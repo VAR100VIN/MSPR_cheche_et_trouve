@@ -26,15 +26,16 @@
     <button id="snap">Take Photo</button>
     <canvas id="canvas" width="640" height="480"></canvas>
     {{ form_start(form) }}
-    <button type="submit" class="btn btn-succes">Valider photo</button>
+    <button type="submit" id="save" class="btn btn-succes">Valider photo</button>
     {{ form_end(form) }}
 </div>
-
+<div id="latitude" class="display-no"></div>
+<div id="longitude" class="display-no"></div>
 <button onclick="window.location.href='/home';"> Home</button>
 <script src="https://raw.githubusercontent.com/exif-js/exif-js/master/exif.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
+<script type="text/javascript" src="{{ asset('assets/js/getloc.js') }}"></script>
 
 
 {% endblock %}

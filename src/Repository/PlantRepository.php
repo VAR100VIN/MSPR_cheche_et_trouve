@@ -38,7 +38,23 @@ class PlantRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    /**
+     * @return Plant[]
+     */
+    public function findPlantBylevel($plant): array
+    {
+        $entityManager = $this->getEntityManager();
 
+        $query = $entityManager->createQuery(
+            'SELECT plant.name,plant.description
+            FROM App\Entity\Plant p
+            ORDER BY p.level ASC
+            LIMIT 1'
+        )->setParameter('name', $plant);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
 //    /**
 //     * @return Plant[] Returns an array of Plant objects
 //     */
