@@ -40,6 +40,8 @@
 
 * Si vous souhaitez vous connecter au Back Office, créez un user et adressez-lui le role admin ["USER_ADMIN"] ainsi qu'un mail et un mdp
 
+## Vous pouvez accéder au MCD, à la maquette et aux use cases en allant dans le dossier rendus.
+
 ## Les créateurs du projet :
 
 * Axel, Hugo, et Bastien.

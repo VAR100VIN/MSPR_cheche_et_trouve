@@ -17,8 +17,8 @@ class Image
     #[ORM\OneToOne(mappedBy: 'idImage', cascade: ['persist', 'remove'])]
     private ?Plant $idPlant = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $url = [];
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $url = null;
 
     public function getId(): ?int
     {
@@ -47,12 +47,12 @@ class Image
         return $this;
     }
 
-    public function getUrl(): array
+    public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    public function setUrl(array $url): self
+    public function setUrl(string $url): self
     {
         $this->url = $url;
 

@@ -8,6 +8,15 @@
 {% endblock %}
 
 {% block body %}
+    {% for find in finds %}
+        {% if app.user.id == find.user.id %}
+            {% for plant in plants %}
+                {% if plant.id == find.plant.id %}
+                        <a href=stats/{{ plant.id }}><img src="{{ asset(plant.idImage.url) }}" alt="a child with flowers" width="50" height="50"></a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
     <div id="map"></div>
 {% endblock %}
 
@@ -15,5 +24,18 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <script src="{{ asset('assets/js/map.js') }}"></script>
+    <script>
+        var map = L.map('map').setView([48.1113387, -1.6800198], 12);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        {% for find in finds %}
+            {% if app.user.id == find.user.id %}
+                L.marker([{{ find.latitude }}, {{ find.longitude }}]).addTo(map)
+                    .bindPopup('Rennes, Ille-et-Villaine, France<br>Voici une plante trouvée');
+            {% endif %}
+        {% endfor %}
+    </script>
+    
 {% endblock %}
