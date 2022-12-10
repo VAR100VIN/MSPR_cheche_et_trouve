@@ -21,6 +21,7 @@ class Find
     private ?Plant $plant = null;
 
     #[ORM\ManyToOne(inversedBy: 'iduser')]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?User $user = null;
 
     #[ORM\Column(type: Types::TEXT,nullable: true)]

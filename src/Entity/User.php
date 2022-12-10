@@ -36,6 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Find::class)]
+    #[ORM\JoinColumn(name: "id", onDelete: "CASCADE")]
     private Collection $iduser;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
