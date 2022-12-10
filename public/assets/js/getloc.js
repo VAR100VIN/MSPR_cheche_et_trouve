@@ -8,7 +8,8 @@ if (navigator.geolocation) {
 	// Function alternative sinon
 	alternative();
 }
-
+const plantInfo = document.getElementById('plant-id');
+console.log(plantInfo)
 function erreur( error ) {
 	switch( error.code ) {
 		case error.PERMISSION_DENIED:
@@ -30,18 +31,23 @@ function erreur( error ) {
 //     console.log( lat, lng );
 //     // Do stuff
 // }
-$("#save").click(function()  {
+$("#save").click(function save()  {
 
-	
+	if (navigator.geolocation) {
+	  navigator.geolocation.getCurrentPosition(function (position) {
 	$.ajax({
-		type: 'POST',          //La méthode cible (POST ou GET)
-		url : '/home/play', //Script Cible
-		dataType: 'text',
-		data   : {
-			longitude: document.getElementById('longitude').innerHTML,
-			latitude: document.getElementById('latitude').innerHTML,
-		}
+	   type: "POST",
+	   url: 'play',
+	   dataType: 'text',
+	   data:  {
+	  image : canvas.toDataURL('medias/uploads'),
+	  plant:  document.getElementById('plant-id').innerHTML,
+	  longitude: position.coords.longitude,
+	  latitude: position.coords.latitude,
+	  }
 	});
+  })
+  } 
   });	  
 
 

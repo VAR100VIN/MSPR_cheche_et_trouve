@@ -14,6 +14,8 @@
     {% for plant in plants %}
     <tr>
         <br>
+        <div id="plant-id"><td>{{ plant.id}}</td></div>
+        <br>
         <td>{{ plant.name}}</td>
         <br>
         <td>{{ plant.description }}</td>
@@ -31,6 +33,7 @@
 </div>
 <div id="latitude" class="display-no"></div>
 <div id="longitude" class="display-no"></div>
+<div id="plant-id" class="display-no"></div>
 <button onclick="window.location.href='/home';"> Home</button>
 <script src="https://raw.githubusercontent.com/exif-js/exif-js/master/exif.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

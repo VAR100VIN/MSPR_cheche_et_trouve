@@ -46,19 +46,34 @@ class HomeController extends AbstractController
     {
         $find = new Find();
         $nonce_valide = false;
-
-        
-        // $find->setPlant($plant);
-        // $find->setUser($user);
         // $find->setDate($date);
-        // $findrepository->save($find,True);
+        
+        // $plant= $this->getId();
+        // $find->addIdplant();
+        // $latitude = $_POST['latitude'];
+        // $longitude = $_POST['longitude'];
+        
+        $plant = $plantRepository->findOneBy(array('level'=>'1'),array('id'=>'desc'),1);
+        // $plant = $_POST['plant-id'];
+        // $find->setPlant($plant);
+        $user= $this->getUser();
+        // $filename=$test.'_'.'.png';
+        // $fic=fopen('medias/uploads/'.$filename,"wb");//
+        // fwrite($fic,base64_decode($image[1]));
+        // $plantRepository = getId();
+        // $plant = $plantRepository;
         $form = $this->createForm(FindType::class, $find);
         $form->handleRequest($request);
-        // $user= $userrepository->find($_POST['user']);
-        // $plant = $plantrepository->find($_POST['plant']);
-        
         if ($form->isSubmitted()&& $form->isValid()){
+            // $data = $_POST['url'];
+            // $image = explode('base64,',$data);
             $find = $form->getData();
+            $find->setUser($user);
+            $find->setPlant($plant);
+            // $find->setLatitude($latitude);
+            // $find->setLongitude($longitude);
+            // $find->setUrl($filename);
+            $findrepository->save($find,True);
             if (isset($_POST['nonce'])) {   // le nonce est stocké dans un champ caché du formulaire
 
                 $nonce_valide = verifier_nonce($_POST['nonce'], 'enregistrer');
@@ -67,18 +82,13 @@ class HomeController extends AbstractController
             // $user= $userrepository->find($_POST['user']);
             // $plant = $plantrepository->find($_POST['plant']);
             if ($nonce_valide) {
-                $latitude = $_POST['latitude'];
-                $longitude = $_POST['longitude'];
+                
+                
+                
             // $date=date('Y-m-d');
             // $date=new DateTime();
-                $find->setLatitude($latitude);
-                $find->setLongitude($longitude);
+                
             }
-            // $latitude = $_POST['latitude'];
-            // $longitude = $_POST['longitude'];
-            // $find->setLatitude($latitude);
-            // $find->setLongitude($longitude);
-            // $findrepository->save($find,True);
             //move le fichier
             // recuperer son nom
             // $filename=$user->getName().'_'.$plant->getName().'.png';
