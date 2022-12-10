@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Repository\PlantRepository;
 use App\Repository\UserRepository;
 use App\Repository\FindRepository;
-use App\Repository\ImageRepository;
 use App\Entity\Plant;
 use DateTime;
 use App\Entity\Find;
@@ -46,14 +45,9 @@ class HomeController extends AbstractController
     public function play(Request $request ,PlantRepository $plantRepository,UserRepository $userrepository, EntityManagerInterface $em,FindRepository $findrepository): Response
     {
         $find = new Find();
-        // $user= $userrepository->find($_POST['user']);
-        // $plant = $plantrepository->find($_POST['plant']);
-        // $latitude = $_POST['latitude'];
-        // $longitude = $_POST['longitude'];
-        // $date=date('Y-m-d');
-        // $date=new DateTime();
-        // $find->setLatitude($latitude);
-        // $find->setLongitude($longitude);
+        $nonce_valide = false;
+
+        
         // $find->setPlant($plant);
         // $find->setUser($user);
         // $find->setDate($date);
@@ -65,6 +59,21 @@ class HomeController extends AbstractController
         
         if ($form->isSubmitted()&& $form->isValid()){
             $find = $form->getData();
+            if (isset($_POST['nonce'])) {   // le nonce est stocké dans un champ caché du formulaire
+
+                $nonce_valide = verifier_nonce($_POST['nonce'], 'enregistrer');
+    
+            }
+            // $user= $userrepository->find($_POST['user']);
+            // $plant = $plantrepository->find($_POST['plant']);
+            if ($nonce_valide) {
+                $latitude = $_POST['latitude'];
+                $longitude = $_POST['longitude'];
+            // $date=date('Y-m-d');
+            // $date=new DateTime();
+                $find->setLatitude($latitude);
+                $find->setLongitude($longitude);
+            }
             // $latitude = $_POST['latitude'];
             // $longitude = $_POST['longitude'];
             // $find->setLatitude($latitude);

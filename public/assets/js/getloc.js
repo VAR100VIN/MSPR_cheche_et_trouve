@@ -32,8 +32,7 @@ function erreur( error ) {
 // }
 $("#save").click(function()  {
 
-	console.log('mesv')
-	console.log(canvas.toDataURL('medias/upload'))
+	
 	$.ajax({
 		type: 'POST',          //La méthode cible (POST ou GET)
 		url : '/home/play', //Script Cible
