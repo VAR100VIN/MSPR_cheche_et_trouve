@@ -47,6 +47,10 @@ body {
   height: 100vh;
 }
 
+.gap-20px {
+  gap: 20px;
+}
+
 .bg-c-white {
   background: rgba(255, 255, 255, 0);
   border-radius: 16px;
