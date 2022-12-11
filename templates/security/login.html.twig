@@ -7,32 +7,29 @@
 {% endblock %}
 
 {% block body %}
-<body>
-    <main class="disp-f j-c-c al-c w-100pc h-100vh">
-        <div class="disp-f bg-c-white card-s f-d-c-m al-c">
-            <div class="disp-f al-c j-c-c f-d-c w-50pc h-100pc">
-                <div class="disp-f al-c mg-b-100px">
-                    <img src="{{ asset('assets/medias/icon.png') }}" alt="a child with flowers" width="50" height="50">
-                    <h1>Cherche & Trouve</h1>
+    <div class="disp-f bg-c-white card-s f-d-c-m al-c">
+        <div class="disp-f al-c w-50pc m-w-312px j-c-c f-d-c h-100pc">
+            <div class="disp-f al-c mg-b-100px">
+                <img src="{{ asset('assets/medias/icon.png') }}" alt="l'icone de l'application" width="50" height="50">
+                <h1>Cherche & Trouve</h1>
+            </div>
+            <form class="disp-f f-d-c" action="{{ path('app_login') }}" method="post">
+                <label class="mg-t-20px" for="username">Email:</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}">
+                <label class="mg-t-20px" for="password">Mot de passe:</label>
+                <input type="password" id="password" name="_password">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                {% if error %}
+                    <p class="red-c">Les coordonnées sont invalides.</p>
+                {% endif %}
+                <div class="disp-f gap-20px mg-t-20px">
+                    <button class="btn" type="submit">Se connecter</button>
+                    <a class="btn-a" href="{{ path('app_register') }}">S'inscrire</a>
                 </div>
-                <form class="disp-f f-d-c" action="{{ path('app_login') }}" method="post">
-                    <label class="mg-t-20px" for="username">Email:</label>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}">
-                    <label class="mg-t-20px" for="password">Mot de passe:</label>
-                    <input type="password" id="password" name="_password">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    {% if error %}
-                        <p class="red-c">Les coordonnées sont invalides.</p>
-                    {% endif %}
-                    <div class="disp-f gap-20px mg-t-20px">
-                        <button class="b-log" type="submit">Se connecter</button>
-                        <a class="b-reg" href="{{ path('app_register') }}">S'inscrire</a>
-                    </div>
-                </form>
-            </div>
-            <div class="w-50pc h-100pc disp-f j-c-c al-c">
-                <img class="img-s" src="{{ asset('assets/medias/login-child.png') }}" alt="un enfant avec des fleurs">
-            </div>
-    </main>
-</body>
+            </form>
+        </div>
+        <div class="w-50pc h-100pc disp-f j-c-c al-c">
+            <img class="img-s" src="{{ asset('assets/medias/login-child.png') }}" alt="un enfant avec des fleurs">
+        </div>
+    </div>
 {% endblock %}

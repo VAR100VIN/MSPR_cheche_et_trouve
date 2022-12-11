@@ -29,16 +29,16 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             EmailField::new('email'),
-            TextField::new('plainPassword')->setFormType(PasswordType::class),
+            TextField::new('plainPassword', 'Mot de passe')->setFormType(PasswordType::class),
             ArrayField::new('roles'),
-            BooleanField::new('isVerified'),
+            BooleanField::new('isVerified', 'est vérifié'),
         ];
     }
     
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add(BooleanFilter::new('isVerified'))
+            ->add(BooleanFilter::new('isVerified', 'est vérifié'))
             ;
     }
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void

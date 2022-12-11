@@ -17,7 +17,7 @@ class PlantCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add(BooleanFilter::new('isShow'))
+            ->add(BooleanFilter::new('isShow', "est affichée"))
         ;
     }
 }

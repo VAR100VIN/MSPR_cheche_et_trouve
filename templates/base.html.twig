@@ -10,10 +10,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="{{ asset('assets/styles/normalize.css') }}">
-        
+        <link rel="stylesheet" href="{{ asset('assets/styles/base.css') }}">
+
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <main class="disp-f j-c-c al-c w-100pc h-100vh">
+            {% block body %}{% endblock %}
+        </main>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
