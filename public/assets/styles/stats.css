@@ -1,4 +1,22 @@
 #map {
-    height: 500px;
-    width: 500px;
+    height: 225px;
+    width: 300px;
+    border-radius: 5%;
+}
+
+.container-map-p {
+    position: absolute;
+    bottom: 20px;
+}
+
+.title-p {
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    height: 350.2px;
+    overflow-y: scroll;
+}
+
+.gap-35px {
+    gap: 35px;
 }

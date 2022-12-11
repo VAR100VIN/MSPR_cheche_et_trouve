@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue !{% endblock %}
+{% block title %}Bienvenue dans le menu !{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/styles/index.css') }}" />
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="disp-f f-d-c al-c">
+        <h1>Bienvenue sur</h1>
+        <div class="disp-f al-c mg-b-100px mg-b-10vh">
+            <img src="{{ asset('assets/medias/icon.png') }}" alt="l'icone de l'application" width="50" height="50">
+            <h1>Cherche & Trouve</h1>
+        </div>
+        <div class="w-90pc">
+            <h1 class="f-s-20px">Voici le but du jeu:</h1>
+            <p>Le but est de trouver les plantes qui vont t’être affichées. 
+            Tu vas avoir des détails sur une plante et une image et à toi de trouver dans ton jardin celle-ci ! 
+            Prends la en photo et montre la à ton parent. Celui-ci pourra valider ou non ton choix.</p>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Bienvenue sur Cherche et Trouve</h1>
-
-    <ul>
-        <a href="{{ path('app_play') }}">Jouer</a>
-        <a href="{{ path('app_stats') }}">Statistiques</a>
-        <a href="{{ path('app_profil') }}">Profil</a>
-    </ul>
-</div>
+        <div class="gap-40px disp-f mg-t-5vh al-c j-c-c f-d-c">
+            <a class="btn-a w-175px" href="{{ path('app_play') }}">Lancer le jeu</a>
+            <a class="btn-a w-175px" href="{{ path('app_stats') }}">Voir mes statistiques</a>
+            <a class="btn-a w-175px" href="{{ path('app_profil') }}">Voir mon profil</a>
+        </div>
+    </div>
 {% endblock %}

@@ -1,21 +1,29 @@
 .l-h {
-  line-height: 60px;
+  line-height: 80px;
+}
+
+.mg-t-5vh {
+  margin-top: 5vh;
+}
+
+.mg-t-10vh {
+  margin-top: 10vh;
+}
+
+.mg-t-25vh {
+  margin-top: 25vh;
+}
+
+.mg-b-10vh {
+  margin-bottom: 10vh;
 }
 
 .w-90pc {
   width: 90%;
 }
 
-.w-400px {
-  width: 400px;
-}
-
 .w-137px {
   width: 137px;
-}
-
-.mg-t-5vh {
-  margin-top: 5vh;
 }
 
 /*# sourceMappingURL=profil-page.css.map */

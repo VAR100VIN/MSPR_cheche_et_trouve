@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voici votre profil !{% endblock %}
+{% block title %}Voici ton profil !{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/styles/profil-page.css') }}" />
 {% endblock %}
 
 {% block body %}
-    <div class="disp-f j-c-c bg-c-white card-s al-c">
-        <div class="disp-f al-c j-c-c f-d-c w-50pc h-100pc">
-            <h1>Bienvenue sur votre profil !</h1>
-            <p>Vous avez trouvé N plantes</p>
-            <img src="{{ asset(app.user.avatar) }}" alt="a child with flowers" width="150" height="200">
+    <div class="disp-f j-c-c card-s">
+        <div class="disp-f al-c f-d-c">
+            <img class="mg-t-5vh" src="{{ asset(app.user.avatar) }}" alt="photo de profil" width="200" height="200">
+            <p class="l-h mg-t-5vh">Tu as trouvé {{ app.user.iduser|length }} plante
+                {% if app.user.iduser|length > 1 %}
+                    s
+                {% endif %}
+            </p>
             <div class="l-h">Email: {{ app.user.email }}</div>
             <div class="l-h">Points d'expérience: {{ app.user.exp | default("0") }}</div>
-            <div class="w-400px disp-f j-c-c gap-20px">
+            <div class="disp-f j-c-c gap-20px mg-t-10vh">
                 <a class="btn-a" href="{{ path('app_profil_edit') }}">Modifier mon profil</a>
                 {{ include('home/_delete_form.html.twig') }}
-            </div>
-            <div class="disp-f j-c-c w-90pc mg-t-5vh">
-                <a class="btn-a" href="{{ path('app_home') }}">Home</a>
             </div>
         </div>
     </div>

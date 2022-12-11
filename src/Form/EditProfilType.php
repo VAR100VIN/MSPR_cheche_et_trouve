@@ -23,8 +23,14 @@ class EditProfilType extends AbstractType
                     'Paresseux' => 'assets/medias/sloth.png',
                     'Pingouin' => 'assets/medias/penguin.png',
                     'Eléphant' => 'assets/medias/elephant.png',
-                ]])
-            ->add('email', EmailType::class)
+                ],
+                'attr' => ['class' => 'btn'],
+                'label' => false,
+                ])
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'w-275px'],
+                'label' => false,
+            ])
             ->add('ModifPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -35,12 +41,13 @@ class EditProfilType extends AbstractType
                         'message' => 'S\'il vous plaît, entrez un mot de passe.',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 4,
                         'minMessage' => 'Votre mot de passe doit avoir minimum {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
+                'label' => false,
             ])
         ;
     }

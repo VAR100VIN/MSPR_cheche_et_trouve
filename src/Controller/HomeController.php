@@ -111,10 +111,12 @@ class HomeController extends AbstractController
     }
 
     #[Route('/profil', name: 'app_profil')]
-    public function profil(): Response
+    public function profil(FindRepository $findRepository): Response
     {
+        $finds = $findRepository->findAll();
         return $this->render('home/profil.html.twig', [
             'controller_name' => 'HomeController',
+            'finds' => $finds,
         ]);
     }
 
@@ -122,7 +124,7 @@ class HomeController extends AbstractController
     public function editProfil(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $userPasswordHasher):Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(EditProfilType::class, $user);
+        $form = $this->createForm(EditProfilType::class, $user, ['attr' => ['class' => 'disp-f al-c f-d-c']]);
 
         $form->handleRequest($request);
 

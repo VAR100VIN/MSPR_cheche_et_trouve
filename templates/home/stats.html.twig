@@ -8,16 +8,24 @@
 {% endblock %}
 
 {% block body %}
-    {% for find in finds %}
-        {% if app.user.id == find.user.id %}
-            {% for plant in plants %}
-                {% if plant.id == find.plant.id %}
-                        <a href=stats/{{ plant.id }}><img src="{{ asset(plant.idImage.url) }}" alt="a child with flowers" width="50" height="50"></a>
+    <div class="title-p">
+        <h1 class="f-s-20px">Voici les plantes trouvées</h1>
+        <div class="disp-f j-c-c f-w gap-35px">
+            {% for find in finds %}
+                {% if app.user.id == find.user.id %}
+                    {% for plant in plants %}
+                        {% if plant.id == find.plant.id %}
+                                <a href=stats/{{ plant.id }}><img src="{{ asset(plant.idImage.url) }}" alt="a child with flowers" width="100" height="100"></a>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
-        {% endif %}
-    {% endfor %}
-    <div id="map"></div>
+        </div>
+    </div>
+    <div class="container-map-p">
+        <h1 class="f-s-20px">Voici où tu as trouvé les plantes :</h1>
+        <div id="map"></div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

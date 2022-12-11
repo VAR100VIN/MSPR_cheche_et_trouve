@@ -14,8 +14,17 @@
 
     </head>
     <body>
+        {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+        {% if currentPath == "/login" or currentPath == "/register" or currentPath == "/home/" %}
+            <div></div>
+        {% else %}
+            <a href="{{ path('app_home') }}"><img class="home-p" src="{{ asset('assets/medias/home.png') }}" alt="icone home" width="50" height="50"></a>
+        {% endif %}
+
         <main class="disp-f j-c-c al-c w-100pc h-100vh">
-            {% block body %}{% endblock %}
+            <div class="disp-f bg-c-white card-s j-c-c f-d-c-m al-c relative-p">
+                {% block body %}{% endblock %}
+            </div>
         </main>
         {% block javascripts %}{% endblock %}
     </body>
