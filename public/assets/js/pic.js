@@ -36,7 +36,7 @@ $("#save").click(function save()  {
 	  navigator.geolocation.getCurrentPosition(function (position) {
 	$.ajax({
 	   type: "POST",
-	   url: 'play',
+	   url: 'HomeController.php',
 	   dataType: 'text',
 	   data:  {
 	  image : canvas.toDataURL('public/medias/uploads'),

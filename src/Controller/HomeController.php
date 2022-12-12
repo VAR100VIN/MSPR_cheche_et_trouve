@@ -65,9 +65,9 @@ class HomeController extends AbstractController
     {
         $find = new Find();
         $nonce_valide = false;
-        // $find->setDate($date);
         
-        // $data = $_POST['url'];
+        
+        // 
         $plant = $plantRepository->findOneBy(array('level'=>'1'),array('id'=>'desc'),1);
         $user= $this->getUser();
         $date=date('Y-m-d');
@@ -78,18 +78,21 @@ class HomeController extends AbstractController
         $form = $this->createForm(FindType::class, $find);
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
-            // $data = $_POST['url'];
-            // $image = explode('base64,',$data);
+            
             // $latitude = $_POST['latitude'];
             // $longitude = $_POST['longitude'];
-            $fic=fopen('medias/uploads/'.$filename,"wb");//
-            fwrite($fic,base64_decode($image[1]));
+            // $data = $_POST['image'];
+            // $image = explode('base64,',$data);
+            // $fic=fopen('medias/uploads/'.$filename,"wb");//
+            // fwrite($fic,base64_decode($image[1]));
             $find = $form->getData();
             $find->setUser($user);
             $find->setPlant($plant);
+            $find->setDate($date);
             // $find->setLatitude($latitude);
             // $find->setLongitude($longitude);
             // $find->setUrl($filename);
+            $find->setUrl($filename);
             $findrepository->save($find,True);
             if (isset($_POST['nonce'])) {   // le nonce est stocké dans un champ caché du formulaire
 
