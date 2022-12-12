@@ -10,11 +10,7 @@
     <div class="disp-f j-c-c card-s">
         <div class="disp-f al-c f-d-c">
             <img class="mg-t-5vh" src="{{ asset(app.user.avatar) }}" alt="photo de profil" width="200" height="200">
-            <p class="l-h mg-t-5vh">Tu as trouvé {{ app.user.iduser|length }} plante
-                {% if app.user.iduser|length > 1 %}
-                    s
-                {% endif %}
-            </p>
+            <p class="l-h mg-t-5vh">Tu as trouvé {{ app.user.iduser|length }} plante{% if app.user.iduser|length > 1 %}s{% endif %}</p>
             <div class="l-h">Email: {{ app.user.email }}</div>
             <div class="l-h">Points d'expérience: {{ app.user.exp | default("0") }}</div>
             <div class="disp-f j-c-c gap-20px mg-t-10vh">
