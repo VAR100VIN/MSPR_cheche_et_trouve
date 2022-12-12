@@ -15,7 +15,10 @@
                 {% if app.user.id == find.user.id %}
                     {% for plant in plants %}
                         {% if plant.id == find.plant.id %}
-                                <a href=stats/{{ plant.id }}><img src="{{ asset(plant.idImage.url) }}" alt="a child with flowers" width="100" height="100"></a>
+                                <a class="txt-d-none black-c" href=stats/{{ plant.id }}><img src="{{ asset(plant.idImage.url) }}" alt="image de plantes trouvées" width="100" height="100">
+                                <p>{{ plant.name }}</p>
+                                <p>Trouvé le {{ find.date.format('d/m/Y') }}</p>
+                                </a>
                         {% endif %}
                     {% endfor %}
                 {% endif %}

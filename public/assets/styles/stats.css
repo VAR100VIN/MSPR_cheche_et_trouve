@@ -17,6 +17,14 @@
     overflow-y: scroll;
 }
 
+.txt-d-none {
+    text-decoration: none;
+}
+
+.black-c {
+    color: black;
+}
+
 .gap-35px {
     gap: 35px;
 }
