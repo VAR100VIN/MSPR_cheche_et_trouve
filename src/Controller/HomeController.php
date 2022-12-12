@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Admin\FindCrudController;
 use Symfony\Bundle\FrameworkBundle\Controller\PlantController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +37,25 @@ class HomeController extends AbstractController
     public function test(PlantRepository $plantRepository,UserRepository $userrepository,FindRepository $findrepository): Response
     {
         $find = new Find;
-        
+        $data = $_POST['image'];
+        $user= $this->getUser();
+        $plant = $plantrepository->findOneBy(["id"=>$_POST['plant']]);
+        $latitude = $_POST['latitude'];
+        $longitude = $_POST['longitude'];
+        $date=date('Y-m-d');
+        $image = explode('base64,',$data);
+        $filename=$user->getName().'_'.$date.'_'.$plant->getName().'.png';
+        $fic=fopen('images/photo/'.$filename,"wb");//
+        fwrite($fic,base64_decode($image[1]));
+        fclose($fic);
+        $date=new DateTime();
+        $find->setUser($user);
+        $find->setPlant($plant);
+        $find->setLatitude($latitude);
+        $find->setLongitude($longitude);
+        $find->setDate($date);
+        $find->setPhoto($filename);
+        $findrepository->save($UHDentity,True);
         $response=new Response();
         return $response;
     }
@@ -48,25 +67,23 @@ class HomeController extends AbstractController
         $nonce_valide = false;
         // $find->setDate($date);
         
-        // $plant= $this->getId();
-        // $find->addIdplant();
-        // $latitude = $_POST['latitude'];
-        // $longitude = $_POST['longitude'];
-        
+        // $data = $_POST['url'];
         $plant = $plantRepository->findOneBy(array('level'=>'1'),array('id'=>'desc'),1);
-        // $plant = $_POST['plant-id'];
-        // $find->setPlant($plant);
         $user= $this->getUser();
-        // $filename=$test.'_'.'.png';
-        // $fic=fopen('medias/uploads/'.$filename,"wb");//
-        // fwrite($fic,base64_decode($image[1]));
-        // $plantRepository = getId();
-        // $plant = $plantRepository;
+        $date=date('Y-m-d');
+        $date=new DateTime();
+        $result = $date->format('Y-m-d H:i:s');
+        $filename=$result.'_'.'.png';
+        
         $form = $this->createForm(FindType::class, $find);
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
             // $data = $_POST['url'];
             // $image = explode('base64,',$data);
+            // $latitude = $_POST['latitude'];
+            // $longitude = $_POST['longitude'];
+            $fic=fopen('medias/uploads/'.$filename,"wb");//
+            fwrite($fic,base64_decode($image[1]));
             $find = $form->getData();
             $find->setUser($user);
             $find->setPlant($plant);

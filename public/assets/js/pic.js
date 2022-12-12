@@ -1,4 +1,4 @@
-let canvas = document.querySelector("#canvas");
+const canvas = document.querySelector("#canvas");
 let context = canvas.getContext("2d");
 let video = document.querySelector("#video");
 
@@ -30,3 +30,18 @@ document.getElementById('snap').addEventListener('click', ()=>{
 //       }
 //     });
 //   });
+$("#save").click(function save()  {
+
+	if (navigator.geolocation) {
+	  navigator.geolocation.getCurrentPosition(function (position) {
+	$.ajax({
+	   type: "POST",
+	   url: 'play',
+	   dataType: 'text',
+	   data:  {
+	  image : canvas.toDataURL('public/medias/uploads'),
+	  }
+	});
+  })
+  } 
+  });	 
