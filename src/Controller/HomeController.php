@@ -101,6 +101,7 @@ class HomeController extends AbstractController
             $em->persist($find);
             $em->flush();
             echo 'Ajout réussi';
+            // $user->getExp()+1;
             return $this->render('home/playafter.html.twig', [
                 'plants' => $plantRepository->findBy(array('level'=>'1'),array('id'=>'desc'),1), # TODO : Please remove the level = 1
             ]);

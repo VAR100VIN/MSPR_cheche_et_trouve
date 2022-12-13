@@ -50,7 +50,7 @@ class PlantRepository extends ServiceEntityRepository
             }
         }elseif ($user!=null){
         $userid=$user->getId();
-        $rawSql="select * from plant where level<".strval($user->getExp()+1)." and id not in(SELECT plant_id FROM find where user_id=:user_id) order by RAND() limit ".strval($count).";";
+        $rawSql="select * from plant where level<=".strval($user->getExp()+1)." and id not in(SELECT plant_id FROM find where user_id=:user_id) order by RAND() limit ".strval($count).";";
         $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
             $plants_array=$stmt->executeQuery([":user_id"=>$userid])->fetchAllAssociative();
             $plantsToReturn = [];
