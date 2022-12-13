@@ -16,8 +16,9 @@
         <br>
         <td>{{ plant.description }}</td>
         <br>
+        <img class="image" src="{{ plant.idImage.url }}"></img>
     </tr>
-    <img class="image" src="{{ asset('assets/medias/pissenlit.jpg') }}"></img>
+    
     {% endfor %}
     
     <video id="video" width="640" height="480" autoplay></video>
