@@ -31,24 +31,24 @@ function erreur( error ) {
 //     console.log( lat, lng );
 //     // Do stuff
 // }
-$("#save").click(function save()  {
+// $("#save").click(function save()  {
 
-	if (navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(function (position) {
-	$.ajax({
-	   type: "POST",
-	   url: 'play',
-	   dataType: 'text',
-	   data:  {
-	  image : canvas.toDataURL('medias/uploads'),
-	  plant:  document.getElementById('plant-id').innerHTML,
-	  longitude: position.coords.longitude,
-	  latitude: position.coords.latitude,
-	  }
-	});
-  })
-  } 
-  });	  
+// 	if (navigator.geolocation) {
+// 	  navigator.geolocation.getCurrentPosition(function (position) {
+// 	$.ajax({
+// 	   type: "POST",
+// 	   url: 'play',
+// 	   dataType: 'text',
+// 	   data:  {
+// 	  image : canvas.toDataURL('medias/uploads'),
+// 	  plant:  document.getElementById('plant-id').innerHTML,
+// 	  longitude: position.coords.longitude,
+// 	  latitude: position.coords.latitude,
+// 	  }
+// 	});
+//   })
+//   } 
+//   });	  
 
 
 let date1 = Date();

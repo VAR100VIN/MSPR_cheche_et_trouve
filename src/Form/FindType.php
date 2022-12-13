@@ -14,10 +14,10 @@ class FindType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-        ->add('latitude', TextareaType::class,)
-        ->add('longitude', TextareaType::class)
-            ;
+        // $builder
+        // ->add('latitude', TextareaType::class,)
+        // ->add('longitude', TextareaType::class)
+        //     ;
            
     }
 

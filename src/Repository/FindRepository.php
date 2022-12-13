@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Plant;
+use App\Entity\User;
 use App\Entity\Find;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

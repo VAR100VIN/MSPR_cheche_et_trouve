@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use Psr\Log\LoggerInterface;
 use App\Repository\PlantRepository;
 use App\Repository\UserRepository;
 use App\Repository\FindRepository;
@@ -33,35 +34,36 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-    #[Route('/api',name: 'api_loc')]
-    public function test(PlantRepository $plantRepository,UserRepository $userrepository,FindRepository $findrepository): Response
-    {
-        $find = new Find;
-        $data = $_POST['image'];
-        $user= $this->getUser();
-        $plant = $plantrepository->findOneBy(["id"=>$_POST['plant']]);
-        $latitude = $_POST['latitude'];
-        $longitude = $_POST['longitude'];
-        $date=date('Y-m-d');
-        $image = explode('base64,',$data);
-        $filename=$user->getName().'_'.$date.'_'.$plant->getName().'.png';
-        $fic=fopen('images/photo/'.$filename,"wb");//
-        fwrite($fic,base64_decode($image[1]));
-        fclose($fic);
-        $date=new DateTime();
-        $find->setUser($user);
-        $find->setPlant($plant);
-        $find->setLatitude($latitude);
-        $find->setLongitude($longitude);
-        $find->setDate($date);
-        $find->setPhoto($filename);
-        $findrepository->save($UHDentity,True);
-        $response=new Response();
-        return $response;
-    }
+    // #[Route('/api',name: 'api_loc')]
+    // public function test(PlantRepository $plantRepository,UserRepository $userrepository,FindRepository $findrepository): Response
+    // {
+    //     $find = new Find;
+    //     $plant = $plantRepository->findOneBy(array('level'=>'1'),array('id'=>'desc'),1);
+    //     $user= $this->getUser();
+    //     // $plant = $plantrepository->findOneBy(["id"=>$_POST['plant']]);
+    //     // $latitude = $_POST['latitude'];
+    //     // $longitude = $_POST['longitude'];
+    //     $data = $_POST['image'];
+    //     $date=date('Y-m-d');
+    //     $image = explode('base64,',$data);
+    //     $filename=$user->getName().'_'.$image.$date.'.png';
+    //     // $fic=fopen('images/photo/'.$filename,"wb");//
+    //     // fwrite($fic,base64_decode($image[1]));
+    //     // fclose($fic);
+    //     $date=new DateTime();
+    //     $find->setUser($user);
+    //     $find->setPlant($plant);
+    //     $find->setLatitude($latitude);
+    //     $find->setLongitude($longitude);
+    //     $find->setDate($date);
+    //     $find->setUrl($filename);
+    //     $findrepository->save($find,True);
+    //     $response=new Response();
+    //     return $response;
+    // }
     
     #[Route('/play', name: 'app_play')]
-    public function play(Request $request ,PlantRepository $plantRepository,UserRepository $userrepository, EntityManagerInterface $em,FindRepository $findrepository): Response
+    public function play(LoggerInterface $logger, Request $request ,PlantRepository $plantRepository,UserRepository $userrepository, EntityManagerInterface $em,FindRepository $findrepository): Response
     {
         $find = new Find();
         $nonce_valide = false;
@@ -77,46 +79,25 @@ class HomeController extends AbstractController
         
         $form = $this->createForm(FindType::class, $find);
         $form->handleRequest($request);
-        if ($form->isSubmitted()&& $form->isValid()){
+        $latitude = $request->get('latitude');
+            $longitude = $request->get('longitude');
+            $data = $request->get('image');
+        if ($request->isXmlHttpRequest()){
             
-            // $latitude = $_POST['latitude'];
-            // $longitude = $_POST['longitude'];
-            // $data = $_POST['image'];
-            // $image = explode('base64,',$data);
-            // $fic=fopen('medias/uploads/'.$filename,"wb");//
-            // fwrite($fic,base64_decode($image[1]));
+
+            
+            $logger->info($data);
+            $image = explode('base64,',$data);
+                $fic=fopen('/public/assets/medias/uploads/'.$filename,"wb");//
+                fwrite($fic,base64_decode($image[1]));
             $find = $form->getData();
             $find->setUser($user);
             $find->setPlant($plant);
             $find->setDate($date);
-            // $find->setLatitude($latitude);
-            // $find->setLongitude($longitude);
-            // $find->setUrl($filename);
+            $find->setLatitude($latitude);
+            $find->setLongitude($longitude);
             $find->setUrl($filename);
             $findrepository->save($find,True);
-            if (isset($_POST['nonce'])) {   // le nonce est stocké dans un champ caché du formulaire
-
-                $nonce_valide = verifier_nonce($_POST['nonce'], 'enregistrer');
-    
-            }
-            // $user= $userrepository->find($_POST['user']);
-            // $plant = $plantrepository->find($_POST['plant']);
-            if ($nonce_valide) {
-                
-                
-                
-            // $date=date('Y-m-d');
-            // $date=new DateTime();
-                
-            }
-            //move le fichier
-            // recuperer son nom
-            // $filename=$user->getName().'_'.$plant->getName().'.png';
-            // $find->setUrl($filename);
-            // $lat = addslashes($_POST['lat']);
-            // $lng = addslashes($_POST['lng']);
-            // $find->setLatitude($latitude);
-            // $find->setLongitude($longitude);
             $em->persist($find);
             $em->flush();
             echo 'Ajout réussi';
@@ -124,8 +105,24 @@ class HomeController extends AbstractController
                 'plants' => $plantRepository->findBy(array('level'=>'1'),array('id'=>'desc'),1), # TODO : Please remove the level = 1
             ]);
         }
+            
+            // if (isset($_POST['nonce'])) {   // le nonce est stocké dans un champ caché du formulaire
+                
+            //     $nonce_valide = verifier_nonce($_POST['nonce'], 'enregistrer');
+    
+            // }
+            // // $user= $userrepository->find($_POST['user']);
+            // // $plant = $plantrepository->find($_POST['plant']);
+            // if ($nonce_valide) {
+                
+                
+            // }
+            // // $find->setLatitude($latitude);
+            // // $find->setLongitude($longitude);
+            
+           
         return $this->render('home/play.html.twig', [
-            'plants' => $plantRepository->findBy(array('level'=>'1'),array('id'=>'desc'),1),
+            'plants' => $plantRepository->Game(1,true,$this->getUser()),
             'form' => $form->createView()
         ]);
     }

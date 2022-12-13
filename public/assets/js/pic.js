@@ -10,38 +10,54 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 }
 
 document.getElementById('snap').addEventListener('click', ()=>{
-    context.drawImage(video, 0,0,640, 480)
+    context.drawImage(video, 0,0,640, 480);
+	context.src = canvas.toDataURL('medias/uploads');
 })
+// On vérifie que la méthode est implémenté dans le navigateur
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function (position) {
+		document.getElementById('latitude').innerHTML= position.coords.latitude
+		document.getElementById('longitude').innerHTML= position.coords.longitude
+		
+	})
+	} else {
+	// Function alternative sinon
+	alternative();
+}
+const plantInfo = document.getElementById('plant-id');
+console.log(plantInfo)
 
-// $("#save").click(function()  {
-
-//     console.log('mesv')
-//     console.log(canvas.toDataURL('medias/upload'))
-//     $.ajax({
-//        type: "POST",
-//        url: 'apiphoto',
-//        dataType: 'text',
-//        data:  {
-//       image : canvas.toDataURL('medias/upload'),
-//       user: document.getElementById('user-id').innerHTML,
-//       plant: document.getElementById('plant-id').innerHTML,
-//       longitude: document.getElementById('longitude').innerHTML,
-//       latitude: document.getElementById('latitude').innerHTML,
-//       }
-//     });
-//   });
-$("#save").click(function save()  {
-
-	if (navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(function (position) {
+// $("#snap").click(function ()  {
+// 	var canva= canvas.toDataURL('medias/uploads');
+// 	if (navigator.geolocation) {
+// 	  navigator.geolocation.getCurrentPosition(function (position) {
+// 	$.ajax({
+// 	   type: "POST",
+// 	   url: 'play',
+// 	   dataType: 'text',
+// 	   data:  {
+// 	  image : canva,
+// 	  longitude: position.coords.longitude,
+// 	  latitude: position.coords.latitude,
+// 	  }
+	  
+// 	});
+// 	console.log(data);
+//   })
+//   } 
+//   });	 
+  $("#snap").click(function ()  {
+	var canva= canvas.toDataURL('image/webp', 0.1);
+	console.log( document.getElementById('latitude').innerHTML);
 	$.ajax({
-	   type: "POST",
-	   url: 'HomeController.php',
+	   type: "GET",
+	   url: 'play',
 	   dataType: 'text',
 	   data:  {
-	  image : canvas.toDataURL('public/medias/uploads'),
+	  image : canva,
+	  longitude: document.getElementById('longitude').innerHTML,
+	  latitude: document.getElementById('latitude').innerHTML,
 	  }
+	  
 	});
   })
-  } 
-  });	 
