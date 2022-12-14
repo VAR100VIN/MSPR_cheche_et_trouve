@@ -27,26 +27,9 @@ if (navigator.geolocation) {
 const plantInfo = document.getElementById('plant-id');
 console.log(plantInfo)
 
-// $("#snap").click(function ()  {
-// 	var canva= canvas.toDataURL('medias/uploads');
-// 	if (navigator.geolocation) {
-// 	  navigator.geolocation.getCurrentPosition(function (position) {
-// 	$.ajax({
-// 	   type: "POST",
-// 	   url: 'play',
-// 	   dataType: 'text',
-// 	   data:  {
-// 	  image : canva,
-// 	  longitude: position.coords.longitude,
-// 	  latitude: position.coords.latitude,
-// 	  }
-	  
-// 	});
-// 	console.log(data);
-//   })
-//   } 
-//   });	 
-  $("#snap").click(function ()  {
+
+// On va récupérer la géolocalisation du user ainsi que l'image qu'il va prendre
+  $("#save").click(function ()  {
 	var canva= canvas.toDataURL('image/webp', 0.1);
 	console.log( document.getElementById('latitude').innerHTML);
 	$.ajax({
@@ -57,7 +40,31 @@ console.log(plantInfo)
 	  image : canva,
 	  longitude: document.getElementById('longitude').innerHTML,
 	  latitude: document.getElementById('latitude').innerHTML,
+	  plant:  document.getElementById('plant-title').innerHTML,
 	  }
 	  
 	});
   })
+  function myFunction() {
+	var x = document.getElementById("save");
+	var y = document.getElementById("notsave");
+	var z = document.getElementById("verif");
+	var direct = document.getElementById("video");
+	var bouton = document.getElementById("snap");
+	var photo = document.getElementById("canvas");
+	var after = document.getElementById("after");
+	var before = document.getElementById("before");
+	var beforep = document.getElementById("beforep");
+	if (x.style.display === "none") {
+	  after.style.display ="block";
+	} else {
+	  x.style.display = "none";
+	  y.style.display ="none";
+	  z.style.display ="none";
+	  direct.style.display ="none";
+	  bouton.style.display ="none";
+	  photo.style.display ="none";
+	  before.style.display="none";
+	  beforep.style.display="none";
+	}
+  }

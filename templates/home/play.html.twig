@@ -5,30 +5,35 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>Bonjour j'espère que tu es prêt à chercher </h1>
-    <p> Voici la description de la plante à trouver </p>
+    <h1 id="before">Bonjour j'espère que tu es prêt à chercher </h1>
+    <p id="beforep"> Voici la description de la plante à trouver </p>
+    <h1 id="after" class="display-no">Bravo tu as réussi à trouver cette plante </h1>
+    <p id="after" class="display-no"> Voici la description de la plante que tu à trouver </p>
     {% for plant in plants %}
     <tr>
         <br>
-        <div id="plant-id"><td>{{ plant.id}}</td></div>
+        <div id="plant-id" class="display-no"><td>{{ plant.id}}</td></div>
         <br>
-        <td>{{ plant.name}}</td>
+        <div id="plant-title"><td>{{ plant.name}}</td></div>
         <br>
         <td>{{ plant.description }}</td>
         <br>
+        <td><p class="display-no" id="after">{{ plant.DescriptionAfter }}</p></td>
         <img class="image" src="{{ plant.idImage.url }}"></img>
     </tr>
     
     {% endfor %}
     
     <video id="video" width="640" height="480" autoplay></video>
-    <button id="snap">Take Photo</button>
+    <button id="snap">Prendre Photo</button>
     <canvas id="canvas" width="640" height="480"></canvas>
-    {{ form_start(form) }}
+    
     <div id="latitude" class="display-no"></div>
     <div id="longitude" class="display-no"></div>
-    <button type="submit" id="save" class="btn btn-succes" >Valider photo</button>
-    {{ form_end(form) }}
+    <h2 id="verif"> Est-ce que tu es sûr que c'est la bonne? N'hésite pas à le faire vérifier !</h2>
+    <button type="submit" id="save" class="btn btn-succes"onclick="myFunction()" >Oui je valide la photo</button>
+    
+    <button type="submit" id="notsave" class="btn btn-succes" ><a href="#snap"> Non je ne valide pas</a></button>
 </div>
 
 <div id="plant-id" class="display-no"></div>

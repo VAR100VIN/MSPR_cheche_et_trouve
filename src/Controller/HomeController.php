@@ -70,15 +70,18 @@ class HomeController extends AbstractController
         
         
         // 
-        $plant = $plantRepository->findOneBy(array('level'=>'1'),array('id'=>'desc'),1);
+        
+        
+        // $plant = $plantRepository->findOneBy(array('level'=>'1'),array('id'=>'desc'),1);
         $user= $this->getUser();
         $date=date('Y-m-d');
         $date=new DateTime();
         $result = $date->format('Y-m-d H:i:s');
         $filename=$result.'_'.'.png';
-        
+        // $exp =$this ->getExp();
         $form = $this->createForm(FindType::class, $find);
         $form->handleRequest($request);
+        $plant = $plantRepository->findOneBy(["name"=>$request->get('plant')]);
         $latitude = $request->get('latitude');
             $longitude = $request->get('longitude');
             $data = $request->get('image');
@@ -88,8 +91,8 @@ class HomeController extends AbstractController
             
             $logger->info($data);
             $image = explode('base64,',$data);
-                $fic=fopen('/public/assets/medias/uploads/'.$filename,"wb");//
-                fwrite($fic,base64_decode($image[1]));
+                // $fic=fopen('/public/assets/medias/uploads/'.$filename,"wb");//
+                // fwrite($image,base64_decode($image[1]));
             $find = $form->getData();
             $find->setUser($user);
             $find->setPlant($plant);
@@ -98,12 +101,16 @@ class HomeController extends AbstractController
             $find->setLongitude($longitude);
             $find->setUrl($filename);
             $findrepository->save($find,True);
+            $plantRepository->save($plant,True);
             $em->persist($find);
             $em->flush();
             echo 'Ajout réussi';
-            // $user->getExp()+1;
+            $user->setExp($user->getExp()+1);
+            // $exp->setExp()+1;
+            $userrepository->save($user,True);
+        
             return $this->render('home/playafter.html.twig', [
-                'plants' => $plantRepository->findBy(array('level'=>'1'),array('id'=>'desc'),1), # TODO : Please remove the level = 1
+                'plants' => $plantRepository->Game(1,true,$this->getUser()), # TODO : Please remove the level = 1
             ]);
         }
             
@@ -121,7 +128,7 @@ class HomeController extends AbstractController
             // // $find->setLatitude($latitude);
             // // $find->setLongitude($longitude);
             
-           
+         
         return $this->render('home/play.html.twig', [
             'plants' => $plantRepository->Game(1,true,$this->getUser()),
             'form' => $form->createView()
