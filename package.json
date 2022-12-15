@@ -18,8 +18,8 @@
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
-        "compile": "sass assets/styles/style.scss public/assets/styles/style.css",
-        "watch": "sass --watch assets/styles/style.scss public/assets/styles/style.css",
+        "compile": "sass assets/styles/style.scss public/assets/styles/play.css",
+        "watch": "sass --watch assets/styles/style.scss public/assets/styles/play.css",
         "build": "encore production --progress"
     }
 }
