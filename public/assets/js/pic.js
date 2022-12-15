@@ -53,11 +53,16 @@ console.log(plantInfo)
 	var bouton = document.getElementById("snap");
 	var photo = document.getElementById("canvas");
 	var after = document.getElementById("after");
+	var afterp = document.getElementById("afterp");
 	var before = document.getElementById("before");
 	var beforep = document.getElementById("beforep");
-	if (x.style.display === "none") {
+	if (after.style.display === "none") {
 	  after.style.display ="block";
-	} else {
+	}
+	if(afterp.style.display === "none"){
+		afterp.style.display ="block";
+	} 
+	else {
 	  x.style.display = "none";
 	  y.style.display ="none";
 	  z.style.display ="none";
