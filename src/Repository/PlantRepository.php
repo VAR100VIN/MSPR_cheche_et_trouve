@@ -41,14 +41,9 @@ class PlantRepository extends ServiceEntityRepository
         }
     }
 
-    public function Game($count,$OnlyNotFind=false,User $user=null):array{
+    public function Game($count,User $user=null):array{
         $plantsToReturn=[];
-        if ($OnlyNotFind==false){
-            $plants=$this->findBy(['display'=>'1']);
-            for ($i=0;$i<$count;$i++){
-                $plantsToReturn[]=array_splice($plants,random_int(0,count($plants)-1),1)[0];
-            }
-        }elseif ($user!=null){
+        if ($user!=null){
         $userid=$user->getId();
         $rawSql="select * from plant where level<=".strval($user->getExp()+1)." and id not in(SELECT plant_id FROM find where user_id=:user_id)and is_show=1 order by RAND() limit ".strval($count).";";
         $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
@@ -59,7 +54,7 @@ class PlantRepository extends ServiceEntityRepository
                 //$plant = Plant::fromArray($array);
                 $plantsToReturn[] = $plant;
             }
+        }
+        return $plantsToReturn;
     }
-    return $plantsToReturn;
-}
 }
