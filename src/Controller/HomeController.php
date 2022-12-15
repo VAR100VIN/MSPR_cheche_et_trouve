@@ -73,18 +73,20 @@ class HomeController extends AbstractController
             echo 'Ajout réussi';
             $user->setExp($user->getExp()+1);
             $userrepository->save($user,True);
-        
-            return $this->render('home/playafter.html.twig', [
-                'plants' => $plantRepository->Game(1,true,$this->getUser()), # TODO : Please remove the level = 1
-            ]);
         }
          
         return $this->render('home/play.html.twig', [
-            'plants' => $plantRepository->Game(1,true,$this->getUser()),
+            'plants' => $plantRepository->Game($this->getUser()),
             'form' => $form->createView()
         ]);
     }
-
+    #[Route('/play/succes', name: 'app_succes')]
+    public function succes(PlantRepository $plantRepository,UserRepository $userrepository): Response
+    {
+        return $this->render('home/playafter.html.twig', [
+            'plants' => $plantRepository->Succes($this->getUSer()),
+        ]);
+    }
     #[Route('/profil', name: 'app_profil')]
     public function profil(FindRepository $findRepository): Response
     {
