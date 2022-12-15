@@ -10,7 +10,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 }
 
 document.getElementById('snap').addEventListener('click', ()=>{
-    context.drawImage(video, 0,0,640, 480);
+    context.drawImage(video, 0,0,300, 225);
 	context.src = canvas.toDataURL('medias/uploads');
 })
 // On vérifie que la méthode est implémenté dans le navigateur

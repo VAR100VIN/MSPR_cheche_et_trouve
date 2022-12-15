@@ -2,6 +2,10 @@
 
 {% block title %}Prêt à jouer !{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/styles/style.css') }}" />
+{% endblock %}
+
 {% block body %}
 
 <div class="example-wrapper">
@@ -19,14 +23,14 @@
         <td>{{ plant.description }}</td>
         <br>
         <td><p class="display-no" id="after">{{ plant.DescriptionAfter }}</p></td>
-        <img class="image" src="{{ plant.idImage.url }}"></img>
+        <img class="image" src="{{ asset(plant.idImage.url) }}" width="300" height="225">
     </tr>
     
     {% endfor %}
     
-    <video id="video" width="640" height="480" autoplay></video>
+    <video id="video" width="300" height="225" autoplay></video>
     <button id="snap">Prendre Photo</button>
-    <canvas id="canvas" width="640" height="480"></canvas>
+    <canvas id="canvas" width="300" height="225"></canvas>
     
     <div id="latitude" class="display-no"></div>
     <div id="longitude" class="display-no"></div>
@@ -38,15 +42,12 @@
 
 <div id="plant-id" class="display-no"></div>
 
-<script src="https://raw.githubusercontent.com/exif-js/exif-js/master/exif.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
-<script type="text/javascript" src="{{ asset('assets/js/pic.js') }}"></script>
-
 {% endblock %}
 
-    {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('assets/js/pic.js') }}"></script>
-        
-    {% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/pic.js') }}"></script>
+    <script src="https://raw.githubusercontent.com/exif-js/exif-js/master/exif.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pic.js') }}"></script>
+{% endblock %}
