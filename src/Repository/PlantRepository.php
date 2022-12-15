@@ -44,12 +44,11 @@ class PlantRepository extends ServiceEntityRepository
     public function Game(User $user=null):array{
         $plantsToReturn=[];
         if ($user!=null){
-        if ($user!=null){
-        $userid=$user->getId();
-        $rawSql="select * from plant where level<=".strval($user->getExp()+1)." and id not in(SELECT plant_id FROM find where user_id=:user_id)and is_show=1 order by RAND() limit ".strval(1).";";
-        $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
-        $plants_array=$stmt->executeQuery([":user_id"=>$userid])->fetchAllAssociative();
-        $plantsToReturn = [];
+            $userid=$user->getId();
+            $rawSql="select * from plant where level<=".strval($user->getExp()+1)." and id not in(SELECT plant_id FROM find where user_id=:user_id)and is_show=1 order by RAND() limit ".strval(1).";";
+            $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+            $plants_array=$stmt->executeQuery([":user_id"=>$userid])->fetchAllAssociative();
+            $plantsToReturn = [];
             foreach ($plants_array as $array) {
                 $plant=$this->find($array["id"]);
                 //$plant = Plant::fromArray($array);
