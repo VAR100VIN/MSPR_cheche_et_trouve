@@ -4,10 +4,10 @@
     "level": 1,
     "before": [
       {
-        "text": "Le plantain est une petite plante vivace qui mesure environ 10 cm, mais peut atteindre 60 cm de haut. Elle est très commune et se répand un peu partout. Il existe trois espèces de plantain qui ont des propriétés médicinales reconnues."
+        "text": "On marche très souvent sur lui. Il a des feuilles avec des rainures tout du long. Il se trouve sur les endroits avec des sols écrasés. Un chemin par exemple ? "
       },
       {
-        "text": "En botanique, le plantain est une appellation qui regroupe des plantes herbacées vivaces, des Plantaginacées, généralement de milieux humides à aquatiques, du genre Plantago avec quelques 200 espèces, et le genre Alisma, les plantains d'eau de la famille des Alismatacées, pour quelques espèces d'hydrophytes semi-aquatiques."
+        "text": "Avec ses tiges on peut faire des petites catapultes !"
       }
     ],
     "photos": [
@@ -15,11 +15,201 @@
     ],
     "after": [
       {
-        "text": "En plus de nous fournir certaines vitamines, le plantain nourrit les chenilles de papillons, les oiseaux (on connaît leur rôle d’auxiliaires au jardin) et les lapins. Il serait donc dommage de vouloir absolument s’en débarrasser si en trouvez dans votre jardin."
+        "text": "Il en existe 3 espèces en France et plus de 200 dans le monde!"
       },
       {
-        "title": "quelles sont les précautions à prendre avec cette plante ?",
-        "text": "Le plantain lancéolé est déconseillé aux femmes enceintes, mais aussi aux enfants de moins de 3 ans, car il peut causer des irritations et encombrer les voies respiratoires. Aussi, utilisé à haute dose, le plantain peut avoir des effets laxatifs et hypnotiseurs. Attention également car consommé cru, cette plante un peu toxique peut être porteur de l’échinococcose, un parasite grave."
+        "title": "Savais-tu que le plantain pouvait se manger ? ",
+        "text": "Dans des omelettes, des quiches,des salades ou en pesto..."
+      },
+      {
+        "logo": "mosquito.svg",
+        "text": "Face aux piqures de moustique il est génial! Il faut frotter la feuille sur le bouton et tu ne sens plus quça gratte !"
+      }
+    ]
+  },
+  {
+    "name": "L'ortie",
+    "level": 1,
+    "before": [
+      {
+        "text": "Une des premières plantes dont on apprends à se méfier, dès qu'on la touche elle nous pique !"
+      }
+    ],
+    "photos": [
+      "ortie.jpg"
+    ],
+    "after": [
+      {
+        "text": "Il en existe 5 variétés en france."
+      },
+      {
+        "text": "Elle remplace sans soucis des épinards. Une portion de 300 g d'ortie cuite apporte ainsi la ration journalière de protéines"
+      },
+      {
+        "text": "Naturellement riche en vitamines A, B et C, l'ortie est également riche en fer, calcium, magnésium, potassium et phosphore"
+      }
+    ]
+  },
+  {
+    "name": "La consoude",
+    "level": 2,
+    "before": [
+      {
+        "text": "Cette plante a longtemps utilisée pour accélérer la consolidation des fractures"
+      },
+      {
+        "text": "Elle a des petites clochettes blanches, qui changent de couleur dès qu'elles ont été fécondées."
+      }
+    ],
+    "photos": [
+      "consoude.jpg"
+    ],
+    "after": [
+      {
+        "text": "Délicieuse en beignets, cette plante soigne les toux et les douleurs articulaires."
+      },
+      {
+        "text": "Ses feuilles et tiges sont comestibles et sont riches en protéines, en vitamine B12, en silice et en potassium."
+      }
+    ]
+  },
+  {
+    "name": "La ronce",
+    "level": 1,
+    "before": [
+      {
+        "text": "Attentin, cette plante est plein d'épines, il est très facile de se griffer quand on la manipule"
+      }
+    ],
+    "photos": [
+      "./la-ronce.jpg"
+    ],
+    "after": [
+      {
+        "text": "Savais-tu que cette plante est le lieux d'habitat de nombreux animaux ? Que ce soit les oiseaux pour s'y réfugier ou pour les biches pour venir y manger les feuilles et les fruits ?"
+      }
+    ]
+  },
+  {
+    "name": "Le pissenlit",
+    "level": 1,
+    "before": [
+      {
+        "text": "Elle fait des belles fleurs jaunes comestibles"
+      },
+      {
+        "text": "On la nomme fleur à soufler. En effet, sur les fleurs fanées on peut soufler ce qui fait des petits nuages de graines"
+      },
+      {
+        "text": "Son feuillage découpé lui a donné le surnom de dents de lion"
+      }
+    ],
+    "photos": [
+      "pissenlit.jpg"
+    ],
+    "after": [
+      {
+        "text": "La tige creuse de la fleur de pissenlit permet de s’amuser à créer de petits sifflets. Elle peut également servir de paille improvisée, tout en donnant un goût délicieusement amer à votre boisson (mais bon pour la santé !)"
+      }
+    ]
+  },
+  {
+    "name": "Le muguet",
+    "level": 2,
+    "before": [
+      {
+        "text": "On offre des bouquets de cette fleur au 1e mai"
+      },
+      {
+        "text": "Cette plante fait des petits clochettes blanches très jolies"
+      }
+    ],
+    "photos": [
+      "muguet.jpg"
+    ],
+    "after": [
+      {
+        "text": "Attention, toutes les parties de cettes plante sont toxiques ! Laves toi bien les mains après l'avoir manipulée"
+      }
+    ]
+  },
+  {
+    "name": "La menthe",
+    "level": 1,
+    "before": [
+      {
+        "text": "Cette plante sent super bon et adore les lieux humides, tels que les bords d'un étang ou d'une marre."
+      },
+      {
+        "text": "Avec ses feuilles on en fait des tisanes délicieuses, surtout au maroc"
+      }
+    ],
+    "photos": [
+      "menthe.jpg"
+    ],
+    "after": [
+      {
+        "text": "Fais sécher les feuilles, tu pourras alors te préparer des petites tisanes pour terminer un repas."
+      }
+    ]
+  },
+  {
+    "name": "L'oseille",
+    "level": 2,
+    "before": [
+      {
+        "text": "Ses feuilles forment des petites hallebardes ou bout d'une petite tige creuse"
+      }
+    ],
+    "photos": [
+      "oseille.jpg"
+    ],
+    "after": [
+      {
+        "text": "Attention à ne pas la confondre avec le gouet, qui lui est toxique !"
+      }
+    ]
+  },
+  {
+    "name": "Le nombril de venus",
+    "level": 2,
+    "before": [
+      {
+        "text": "On trouve souvent cette plante sur des murs"
+      }
+    ],
+    "photos": [
+      "nombril_de_venus.jpg"
+    ],
+    "after": [
+      {
+        "text": "Laves les feuilles, puis remplis les de fromage boursin et ça te fera une super entrée pour surprendre tes parents !"
+      }
+    ]
+  },
+  {
+    "name": "Achillée millefeuille",
+    "level": 3,
+    "before": [
+      {
+        "text": "Cette plante forme plein de petites fleurs blanches mellifères."
+      },
+      {
+        "text": "Plante anti-inflammatoire et anti-bactérienne permettant une désinfection des plaies et abcès. Il s’en suit une diminution de l’enflure et une guérison accélérée."
+      }
+    ],
+    "photos": [
+      "achillea_millefolium.jpg"
+    ],
+    "after": [
+      {
+        "text": "Il s'agit d'une des plantes les plus couramment utilisées en médecine traditionnelle depuis plus de 3 000 ans"
+      },
+      {
+        "text": "Elle se nomme aussi : herbe à dindes, herbes à dindons, persil à dinde5, herbe aux charpentiers, herbe aux cochers, herbe aux militaires ou au soldat, herbe à la coupure ou saigne-nez"
+      },
+      {
+        "text": "Appliquez sous forme de cataplasme sur les blessures ou mamelons crevassés. Vous pouvez aussi appliquer sur le visage lors d’acné et de points noirs, voire même en cas de coupure sévère."
       }
     ]
   }

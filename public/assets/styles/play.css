@@ -2,4 +2,25 @@
     display: none;
 }
 
+.picture-p {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.camera-p {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top: 10px;
+}
+
+.f-s-title {
+    font-size: 25px;
+}
+
+.b-r-5pc {
+    border-radius: 5%;
+}
+
 /*# sourceMappingURL=play.css.map */
