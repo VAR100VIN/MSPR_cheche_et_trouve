@@ -61,7 +61,7 @@ class PlantRepository extends ServiceEntityRepository
         $plantsToReturn=[];
         if ($user!=null){
             $userid=$user->getId();
-            $rawSql="select * from plant where id in(SELECT plant_id FROM find where user_id=:user_id)order by desc limit ".strval(1).";";
+            $rawSql="select * from plant where id in(SELECT plant_id FROM find where user_id=:user_id)order by id desc limit ".strval(1).";";
             $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
                 $plants_array=$stmt->executeQuery([":user_id"=>$userid])->fetchAllAssociative();
                 $plantsToReturn = [];
@@ -72,5 +72,6 @@ class PlantRepository extends ServiceEntityRepository
                 }
         }
         return $plantsToReturn;
+        header("Refresh CONTENT=\"10; URL=home/play/succes\"" );
     }
 }

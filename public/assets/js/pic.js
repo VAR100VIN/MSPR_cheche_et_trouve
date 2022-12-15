@@ -45,31 +45,3 @@ console.log(plantInfo)
 	  
 	});
   })
-  function myFunction() {
-	var x = document.getElementById("save");
-	var y = document.getElementById("notsave");
-	var z = document.getElementById("verif");
-	var direct = document.getElementById("video");
-	var bouton = document.getElementById("snap");
-	var photo = document.getElementById("canvas");
-	var after = document.getElementById("after");
-	var afterp = document.getElementById("afterp");
-	var before = document.getElementById("before");
-	var beforep = document.getElementById("beforep");
-	if (after.style.display === "none") {
-	  after.style.display ="block";
-	}
-	if(afterp.style.display === "none"){
-		afterp.style.display ="block";
-	} 
-	else {
-	  x.style.display = "none";
-	  y.style.display ="none";
-	  z.style.display ="none";
-	  direct.style.display ="none";
-	  bouton.style.display ="none";
-	  photo.style.display ="none";
-	  before.style.display="none";
-	  beforep.style.display="none";
-	}
-  }

@@ -9,8 +9,8 @@
 {% block body %}
 
     <div class="example-wrapper">
-        <h1 id="after" class="display-no">Bravo tu as réussi à trouver cette plante </h1>
-        <p id="afterp" class="display-no"> Voici la description de la plante que tu à trouver </p>
+        <h1 id="after" >Bravo tu as réussi à trouver cette plante !</h1>
+        <p id="afterp" > Voici des informations supplémentaire sur la plante que tu à trouver </p>
 
         {% for plant in plants %}
             <tr>
@@ -19,7 +19,7 @@
                 <br>
                 <div id="plant-title"><td>{{ plant.name}}</td></div>
                 <br>
-                <td>{{ plant.description }}</td>
+                
                 <br>
                 <td><p>{{ plant.DescriptionAfter }}</p></td>
                 <img class="image" src="{{ asset(plant.idImage.url) }}" width="300" height="225">
