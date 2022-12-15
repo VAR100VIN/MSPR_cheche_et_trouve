@@ -9,7 +9,7 @@
 {% block body %}
 
     <div class="disp-f al-c f-d-c">
-        <h1 class="f-s-title">Voici la plante à trouver</h1>
+        <h1 class="f-s-title">Voici la plante que tu à trouver</h1>
 
         {% for plant in plants %}
             <img class="b-r-5pc" src="{{ asset(plant.idImage.url) }}" width="275" height="175">
@@ -20,8 +20,8 @@
         {% endfor %}
         
         <div class="disp-f gap-20px">
-            <a class="btn-a" href="{{ path('app_home') }}">Je recommence</a>
-            <a class="btn-a" href="{{ path('app_play') }}">Je quitte le jeu</a>
+            <a class="btn-a" href="{{ path('app_play') }}">Je recommence</a>
+            <a class="btn-a" href="{{ path('app_home') }}">Je quitte le jeu</a>
         </div>
 
         <div id="plant-id" class="display-no"></div>
