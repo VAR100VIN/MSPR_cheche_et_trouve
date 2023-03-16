@@ -9,10 +9,12 @@
 {% block body %}
 
     <div class="disp-f al-c f-d-c">
-        <h1 class="f-s-title">Voici la plante que tu à trouver</h1>
+        <h1 class="f-s-title">Voici la plante que tu as trouvé</h1>
 
         {% for plant in plants %}
-            <img class="b-r-5pc" src="{{ asset(plant.idImage.url) }}" width="275" height="175">
+            {% for image in plant.images %}
+                <img class="b-r-5pc" src='{{ asset("assets/medias/#{image}") }}' width="275" height="175">
+            {% endfor %}
             <div class="w-90pc">
                 <h1 id="plant-title">{{ plant.name}}</h1>
                 <p>{{ plant.descriptionAfter }}</p>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ImageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
@@ -14,38 +15,30 @@ class Image
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(mappedBy: 'idImage', cascade: ['persist', 'remove'])]
-    private ?Plant $idPlant = null;
+    /*#[ORM\Column(type: Types::INTEGER)]
+    private ?int $idplant = null;*/
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $url = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idImage')]
+    private ?Plant $plant = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdPlant(): ?Plant
+    /*public function getIdplant(): ?int
     {
-        return $this->idPlant;
+        return $this->idplant;
     }
 
-    public function setIdPlant(?Plant $idPlant): self
+    public function setIdplant(?int $idplant): self
     {
-        // unset the owning side of the relation if necessary
-        if ($idPlant === null && $this->idPlant !== null) {
-            $this->idPlant->setIdImage(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($idPlant !== null && $idPlant->getIdImage() !== $this) {
-            $idPlant->setIdImage($this);
-        }
-
-        $this->idPlant = $idPlant;
-
+        $this->idplant = $idplant;
         return $this;
-    }
+    }*/
 
     public function getUrl(): ?string
     {
@@ -55,6 +48,18 @@ class Image
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getPlant(): ?Plant
+    {
+        return $this->plant;
+    }
+
+    public function setPlant(?Plant $plant): self
+    {
+        $this->plant = $plant;
 
         return $this;
     }

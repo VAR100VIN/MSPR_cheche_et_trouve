@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Image;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -49,6 +50,11 @@ class PlantController extends AbstractDashboardController
         yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Voir les utilisateurs', 'fas fa-eye', User::class),
             MenuItem::linkToCrud('Ajouter un utilisateur', 'fas fa-plus', User::class)->SetAction(Crud::PAGE_NEW)
+        ]);
+        yield MenuItem::section('Gérer les photos');
+        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Voir les photos', 'fas fa-eye', Image::class),
+            MenuItem::linkToCrud('Ajouter une photo', 'fa fa-plus', Image::class)->SetAction(Crud::PAGE_NEW)
         ]);
     }
 }

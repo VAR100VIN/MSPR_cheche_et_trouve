@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Form\FindType;
 use App\Form\PlantType;
 use App\Form\EditProfilType;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -77,6 +78,7 @@ class HomeController extends AbstractController
          
         return $this->render('home/play.html.twig', [
             'plants' => $plantRepository->Game($this->getUser()),
+            /*'nbr_utilisateur' => $findrepository->get_userfound($plant),*/
             'form' => $form->createView()
         ]);
     }
@@ -139,10 +141,24 @@ class HomeController extends AbstractController
     }
 
     #[Route('/stats', name: 'app_stats')]
-    public function stats(FindRepository $findRepository, PlantRepository $plantRepository ): Response
+    public function stats(FindRepository $findRepository, PlantRepository $plantRepository, EntityManagerInterface $entityManager ): Response
     {
         $plants = $plantRepository->findAll();
         $finds = $findRepository->findAll();
+
+        foreach ($plants as $plant){
+            $rawSql="select url from image where plant_id=:plant_id;";
+            $stmt = $entityManager->getConnection()->prepare($rawSql);
+            $images_array=$stmt->executeQuery([":plant_id"=>$plant->getId()])->fetchAllAssociative();
+    
+            $imageProcess = [];
+            foreach ($images_array as $image) {
+                $imageProcess[] = $image['url'];
+            }
+            $plant->setImages($imageProcess);
+        }
+        
+
         return $this->render('home/stats.html.twig', [
             'controller_name' => 'HomeController',
             'finds' => $finds,

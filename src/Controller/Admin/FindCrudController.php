@@ -32,5 +32,7 @@ class FindCrudController extends AbstractCrudController
                 ->setBasePath('medias/uploads'),
         ];
     }
+
+    
     
 }

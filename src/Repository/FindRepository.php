@@ -40,6 +40,21 @@ class FindRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+/*
+    public function get_userfound(Plant $plant)
+    {        
+        $plantsToReturn=[];
+       {
+            $rawSql="select from find where plant_id= :plant_id;";
+            $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+                $result=$stmt->executeQuery([":plant_id"=>$plant->getId()])->fetchAllAssociative();
+               var_dump($result);              
+        }
+        return $plantsToReturn;
+    }
+    
+*/
+
 
 //    /**
 //     * @return Find[] Returns an array of Find objects

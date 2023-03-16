@@ -45,12 +45,25 @@ class PlantRepository extends ServiceEntityRepository
         $plantsToReturn=[];
         if ($user!=null){
             $userid=$user->getId();
+
             $rawSql="select * from plant where level<=".strval($user->getExp()+1)." and id not in(SELECT plant_id FROM find where user_id=:user_id)and is_show=1 order by RAND() limit ".strval(1).";";
             $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
             $plants_array=$stmt->executeQuery([":user_id"=>$userid])->fetchAllAssociative();
+
             $plantsToReturn = [];
             foreach ($plants_array as $array) {
                 $plant=$this->find($array["id"]);
+                $rawSql="select url from image where plant_id=:plant_id;";
+                $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+                $images_array=$stmt->executeQuery([":plant_id"=>$array["id"]])->fetchAllAssociative();
+                
+
+                $imageProcess = [];
+                foreach ($images_array as $image) {
+                    $imageProcess[] = $image['url'];
+                }
+                $plant->setImages($imageProcess);
+        
                 $plantsToReturn[] = $plant;
             }
         }
@@ -66,9 +79,23 @@ class PlantRepository extends ServiceEntityRepository
                 $plantsToReturn = [];
                 foreach ($plants_array as $array) {
                     $plant=$this->find($array["id"]);
+
+                    $rawSql="select url from image where plant_id=:plant_id;";
+                    $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+                    $images_array=$stmt->executeQuery([":plant_id"=>$array["id"]])->fetchAllAssociative();
+
+                    $imageProcess = [];
+                    foreach ($images_array as $image) {
+                        $imageProcess[] = $image['url'];
+                    }
+                    $plant->setImages($imageProcess);
+                    
                     $plantsToReturn[] = $plant;
                 }
         }
         return $plantsToReturn;
     }
+ 
 }
+
+

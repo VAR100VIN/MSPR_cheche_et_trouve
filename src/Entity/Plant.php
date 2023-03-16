@@ -28,8 +28,6 @@ class Plant
     #[ORM\Column]
     private ?bool $isShow = null;
 
-    #[ORM\OneToOne(inversedBy: 'idPlant', cascade: ['persist', 'remove'])]
-    private ?Image $idImage = null;
 
     #[ORM\OneToMany(mappedBy: 'plant', targetEntity: Find::class)]
     private Collection $idplant;
@@ -37,9 +35,15 @@ class Plant
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description_after = null;
 
+    #[ORM\OneToMany(mappedBy: 'plant', targetEntity: Image::class)]
+    private Collection $idImage;
+
+    private $images = array();
+
     public function __construct()
     {
         $this->idplant = new ArrayCollection();
+        $this->idImage = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,18 +99,6 @@ class Plant
         return $this;
     }
 
-    public function getIdImage(): ?Image
-    {
-        return $this->idImage;
-    }
-
-    public function setIdImage(?Image $idImage): self
-    {
-        $this->idImage = $idImage;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Find>
      */
@@ -148,4 +140,43 @@ class Plant
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, image>
+     */
+    public function getIdImage(): Collection
+    {
+        return $this->idImage;
+    }
+
+    public function addIdImage(Image $idImage): self
+    {
+        if (!$this->idImage->contains($idImage)) {
+            $this->idImage->add($idImage);
+            $idImage->setPlant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdImage(Image $idImage): self
+    {
+        if ($this->idImage->removeElement($idImage)) {
+            // set the owning side to null (unless already changed)
+            if ($idImage->getPlant() === $this) {
+                $idImage->setPlant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setImages(Array $images): self{
+        $this->images =  $images;
+        return $this;
+    }
+    public function getImages(): Array{
+        return $this->images;
+    }
+    
 }

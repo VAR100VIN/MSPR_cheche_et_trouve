@@ -70,6 +70,7 @@ body {
   position: absolute;
   right: 25px;
   top: 25px;
+  z-index: 1;
 }
 
 .bg-c-white {

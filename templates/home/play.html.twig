@@ -12,7 +12,9 @@
 
         {% for plant in plants %}
             <div id="plant-id" class="display-no">{{ plant.id}}</div>
-            <img class="b-r-5pc" src="{{ asset(plant.idImage.url) }}" width="275" height="175">
+            {% for img in plant.images %}
+                <img class="b-r-5pc" src='{{ asset("assets/medias/#{img}") }}' width="275" height="175">
+            {% endfor %}
             <div class="w-90pc">
                 <h1 id="plant-title">{{ plant.name}}</h1>
                 <p>{{ plant.description }}</p>
