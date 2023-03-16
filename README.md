@@ -32,6 +32,8 @@
 
 ```php bin/console doctrine:migrations:migrate```
 
+Une fois ceci fait pensez à modifier la ligne DATABASE_URL "mysql" avec votre nom et mot de passe ainsi que le nom de la base de donnée
+
 * Pour démarrer le serveur Symfony faites :
 
 ```symfony server:start```
